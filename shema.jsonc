@@ -1,0 +1,35 @@
+{
+  "weeksRange": "4-7",
+  "schema": [
+    {
+      "group": "ДВ-11", // like a group id
+      "schema": [
+        {
+          "date": 123123490384, //timestamp dd.mm.years
+          "classes": [
+            {
+              "lesson": "2",
+              "audience": "308",
+              "lecturer": "Устименко Д.Л.",
+              "subject": "Философия",
+              "subjectType": "экзамен"
+            },
+            {
+              "lesson": "3",
+              "audience": "308",
+              "lecturer": "Устименко Д.Л.",
+              "subject": "Философия",
+              "subjectType": "экзамен"
+            }
+          ]
+        },
+        {
+          // next day ......
+        }
+      ]
+    },
+    {
+      // next group ...
+    }
+  ]
+}
