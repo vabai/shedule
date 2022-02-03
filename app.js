@@ -75,7 +75,10 @@ const makeDBFToJSON = async () => {
         }
     }
 
-    return schedule
+    return {
+        groupsId,
+        schedule
+    }
 
 }
 
