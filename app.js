@@ -50,7 +50,7 @@ const makeDBFToJSON = async () => {
     for (const gid in groupsId ) {
         schedule.push({group: groupsId[gid], schema: []})
         for (let indexDBF = 0; indexDBF < dbfData.length; indexDBF++) {
-            if ( schedule[gid].group === dbfData[indexDBF].GROUP ) {
+            if ( schedule[gid].group === dbfData[indexDBF].GROUP && dbfData[indexDBF].SUBG !== '2') {
                 const date = parseDate(dbfData[indexDBF].DATE)
                 const schema = makeClassesShema(dbfData[indexDBF])
                 if ( schedule[gid].schema.length === 0 ) {
@@ -59,15 +59,16 @@ const makeDBFToJSON = async () => {
                         classes: [schema]
                     })
                 } else {
-                    for (const sch in schedule[gid].schema) {
-                        if ( schedule[gid].schema[sch].date === date ) {
+                    for (let sch = 0; sch < schedule[gid].schema.length; sch++) {
+                        if (schedule[gid].schema[sch].date === date ) {
                             schedule[gid].schema[sch].classes.push(schema)
                         } else {
-                            schedule[gid].schema.push({
-                                date: date,
-                                classes: [schema]
-                            })
-                            break;
+                            if ( ++sch === schedule[gid].schema.length) {
+                                schedule[gid].schema.push({
+                                    date: date,
+                                    classes: [schema]
+                                })
+                            } else { --sch }
                         }
                     }
                 }
@@ -91,4 +92,3 @@ makeDBFToJSON()
             console.log('Error', err.msg)
         }
     })
-
